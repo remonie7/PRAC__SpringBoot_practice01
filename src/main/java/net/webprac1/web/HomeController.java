@@ -9,12 +9,17 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home() {
-		return "navigation";
+		return "home";
 	}
 	
-	@GetMapping("/test")
-	public String homeTest() {
-		return "test";
+	@GetMapping("/boardA")
+	public String boardAform() {
+		return "boardAform";
 	}
-
+	
+	@GetMapping("/boardB")
+	public String boardBform() {
+		return "boardBform";
+	}
+	
 }
