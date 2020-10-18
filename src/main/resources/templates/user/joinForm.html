@@ -34,9 +34,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        
         <li><a href="/boardA">게시판A</a></li>
-        <li class="active"><a href="/boardB">게시판B <span class="sr-only">(current)</span></a></li>
+        <li><a href="/boardB">게시판B</a></li>
         <li class="dropdown">
         </li>
       </ul>
@@ -49,7 +48,7 @@
       </form>
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/joinForm">회원가입</a></li>
+      <li class="active"><a href="/joinForm">회원가입 <span class="sr-only">(current)</span></a></li>
         <li><a href="/loginForm">로그인</a></li>
         <li><a href="/logout">로그아웃</a></li>
         <li><a href="/infoForm">개인정보수정</a></li>        
@@ -58,8 +57,32 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="container">
+<form method="post" action="/userJoin">
+  <div class="form-group" >
+    <label for="exampleInputId1">User ID</label>
+    <input type="text" class="form-control" id="userId" name="userId">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">User Password</label>
+    <input type="password" class="form-control" id="userPassword" name="userPassword">
+    <small id="passwordHelp" class="form-text text-muted">영문, 숫자, 특수문자를 조합해 10자 이상으로 만드시오</small>
+  </div>
+    <div class="form-group">
+    <label for="exampleInputName1">User Name</label>
+    <input type="text" class="form-control" id="userName" name="userName">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">User Email address</label>
+    <input type="email" class="form-control" id="userEmail" name="userEmail">
+  </div>
 
-게시판B
+
+  <button type="submit" class="btn btn-primary">회원가입</button>
+</form>
+
+</div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/webjars/jquery/1.12.4/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
