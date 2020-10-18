@@ -48,33 +48,33 @@
       </form>
       
       <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="/joinForm">회원가입 <span class="sr-only">(current)</span></a></li>
-        <li><a href="/loginForm">로그인</a></li>
-        <li><a href="/logout">로그아웃</a></li>
-        <li><a href="/infoForm">개인정보수정</a></li>        
+      <li class="active"><a href="/user/joinForm">회원가입 <span class="sr-only">(current)</span></a></li>
+        <li><a href="/user/loginForm">로그인</a></li>
+        <li><a href="/user/logout">로그아웃</a></li>
+        <li><a href="/user/infoForm">개인정보수정</a></li>        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 <div class="container">
-<form method="post" action="/userJoin">
+<form method="post" action="/user/join">
   <div class="form-group" >
-    <label for="exampleInputId1">User ID</label>
-    <input type="text" class="form-control" id="userId" name="userId">
+    <label for="userId">User ID</label>
+    <input type="text" class="form-control" name="userId">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">User Password</label>
-    <input type="password" class="form-control" id="userPassword" name="userPassword">
+    <label for="userPassword">User Password</label>
+    <input type="password" class="form-control" name="userPassword">
     <small id="passwordHelp" class="form-text text-muted">영문, 숫자, 특수문자를 조합해 10자 이상으로 만드시오</small>
   </div>
     <div class="form-group">
-    <label for="exampleInputName1">User Name</label>
-    <input type="text" class="form-control" id="userName" name="userName">
+    <label for="userName">User Name</label>
+    <input type="text" class="form-control" name="userName">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">User Email address</label>
-    <input type="email" class="form-control" id="userEmail" name="userEmail">
+    <label for="userEmail">User Email address</label>
+    <input type="email" class="form-control" name="userEmail">
   </div>
 
 

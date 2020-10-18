@@ -3,8 +3,12 @@ package net.webprac1.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.webprac1.domain.User;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 	
 	
@@ -13,8 +17,9 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
-	@PostMapping("/userJoin")
-	public String userJoin() {
+	@PostMapping("/join")
+	public String userJoin(User user) {
+		System.out.println(user.toString());
 		return "redirect:/";
 	}
 	
@@ -23,7 +28,7 @@ public class UserController {
 		return "user/loginForm";
 	}
 	
-	@PostMapping("/userLogin")
+	@PostMapping("/login")
 	public String userLogin() {
 		return "redirect:/";
 	}
