@@ -27,6 +27,10 @@ public class UserController {
 	@PostMapping("/join")
 	public String userJoin(User user) {
 		System.out.println(user.toString());
+		if(userRepository.findByUserId(user.getUserId())!=null) {
+			System.out.println("아이디 중복");
+			return "redirect:/user/joinForm";
+		}
 		userRepository.save(user);
 		return "redirect:/";
 	}

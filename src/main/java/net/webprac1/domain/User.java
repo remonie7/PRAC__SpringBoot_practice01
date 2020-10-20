@@ -19,6 +19,14 @@ public class User {
 	private String userEmail;
 	
 	
+	
+	
+	
+
+	public String getUserId() {
+		return userId;
+	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
