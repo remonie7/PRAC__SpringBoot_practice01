@@ -1,5 +1,7 @@
 package net.webprac1.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,19 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String userLogin() {
+	public String userLogin(String userId, String userPassword, HttpSession session) {
+		User user = userRepository.findByUserId(userId);
+		
+		if(user==null) {
+			System.out.println("로그인 실패");
+			return "redirect:/user/loginForm";
+		}
+		if(!userPassword.equals(user.getUserPassword())) {
+			System.out.println("로그인 실패");
+			return "redirect:/user/loginForm";
+		}
+		System.out.println("로그인 성공");
+		session.setAttribute("user", user);
 		return "redirect:/";
 	}
 }

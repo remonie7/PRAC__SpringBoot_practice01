@@ -48,10 +48,15 @@
       </form>
       
       <ul class="nav navbar-nav navbar-right">
+      {{^user}}
       <li><a href="/user/joinForm">회원가입</a></li>
-      <li class="active"><a href="/user/loginForm">로그인 <span class="sr-only">(current)</span></a></li>        
+      <li class="active"><a href="/user/loginForm">로그인 <span class="sr-only">(current)</span></a></li>  
+      {{/user}}
+      
+      {{#user}}
         <li><a href="/user/logout">로그아웃</a></li>
         <li><a href="/user/infoForm">개인정보수정</a></li>        
+        {{/user}}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -60,11 +65,11 @@
 <div class="container">
 <form method="post" action="/user/login">
   <div class="form-group" >
-    <label for="exampleInputId1">User ID</label>
+    <label for="userId">User ID</label>
     <input type="text" class="form-control" id="userId" name="userId">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">User Password</label>
+    <label for="userPassword">User Password</label>
     <input type="password" class="form-control" id="userPassword" name="userPassword">
   </div>
 

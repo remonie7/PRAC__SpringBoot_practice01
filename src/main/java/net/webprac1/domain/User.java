@@ -14,12 +14,17 @@ public class User {
 	@Column(nullable=false, length=20)
 	private String userId;
 	private String userPassword;
+
 	private String userName;
 	private String userEmail;
 	
 	
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+	public String getUserPassword() {
+		return userPassword;
 	}
 
 
