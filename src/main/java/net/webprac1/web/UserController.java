@@ -54,20 +54,20 @@ public class UserController {
 			return "redirect:/user/loginForm";
 		}
 		System.out.println("로그인 성공");
-		session.setAttribute("user", user);
+		session.setAttribute("sessionedUser", user);
 		return "redirect:/";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("user");
+		session.removeAttribute("sessionedUser");
 		return "redirect:/";
 	}
 	
 	@GetMapping("/{id}/infoForm")
 	public String infoForm(@PathVariable Long id, Model model) {
 		User user = userRepository.findById(id).get();
-		model.addAttribute("OneUser", user);
+		model.addAttribute("infoUser", user);
 		return "user/infoForm";
 	}
 
