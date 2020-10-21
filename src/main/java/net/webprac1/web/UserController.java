@@ -71,9 +71,11 @@ public class UserController {
 			return "redirect:/user/loginForm";
 		}
 		
-		User sessionedUser = (User) tempUser;		
-		if(!sessionedUser.getUserId().equals(id)) {
-			return "redirect:/";
+		User sessionedUser = (User) tempUser;	
+		System.out.println(tempUser.toString());
+		if(!sessionedUser.isSameId(id)) {
+			model.addAttribute("user_info_not_same", "자신의 정보만 수정 가능합니다");
+			return "user/infoForm";
 		}
 		
 		User user = userRepository.findById(id).get();
