@@ -65,7 +65,17 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}/infoForm")
-	public String infoForm(@PathVariable Long id, Model model) {
+	public String infoForm(@PathVariable Long id, Model model, HttpSession session) {
+		Object tempUser = session.getAttribute("sessionedUser");		
+		if(tempUser == null) {
+			return "redirect:/user/loginForm";
+		}
+		
+		User sessionedUser = (User) tempUser;		
+		if(!sessionedUser.getUserId().equals(id)) {
+			return "redirect:/";
+		}
+		
 		User user = userRepository.findById(id).get();
 		model.addAttribute("infoUser", user);
 		return "user/infoForm";
