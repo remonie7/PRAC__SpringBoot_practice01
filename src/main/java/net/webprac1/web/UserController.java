@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -54,7 +55,7 @@ public class UserController {
 		}
 		System.out.println("로그인 성공");
 		session.setAttribute("user", user);
-		return "redirect:/";
+		return "redirect:/";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 	}
 	
 	@GetMapping("/logout")
@@ -62,4 +63,12 @@ public class UserController {
 		session.removeAttribute("user");
 		return "redirect:/";
 	}
+	
+	@GetMapping("/{id}/infoForm")
+	public String infoForm(@PathVariable Long id, Model model) {
+		User user = userRepository.findById(id).get();
+		model.addAttribute("OneUser", user);
+		return "user/infoForm";
+	}
+
 }

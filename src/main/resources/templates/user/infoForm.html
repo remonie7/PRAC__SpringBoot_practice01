@@ -8,34 +8,35 @@
 {{> include/navigation}}
 
 
- 
+
 <div class="container">
-<form method="post" action="/user/join">
+
+{{#OneUser}}
+<form method="post" action="/user/login">
   <div class="form-group" >
     <label for="userId">User ID</label>
-    <input type="text" class="form-control" name="userId">
+    <input type="text" class="form-control" name="userId" value="{{userId}}">
   </div>
   <div class="form-group">
     <label for="userPassword">User Password</label>
-    <input type="password" class="form-control" name="userPassword">
+    <input type="password" class="form-control" name="userPassword" value="{{userPassword}}">
     <small id="passwordHelp" class="form-text text-muted">영문, 숫자, 특수문자를 조합해 10자 이상으로 만드시오</small>
   </div>
     <div class="form-group">
     <label for="userName">User Name</label>
-    <input type="text" class="form-control" name="userName">
+    <input type="text" class="form-control" name="userName" value="{{userName}}">
   </div>
   <div class="form-group">
     <label for="userEmail">User Email address</label>
-    <input type="email" class="form-control" name="userEmail">
+    <input type="email" class="form-control" name="userEmail" value="{{userEmail}}">
   </div>
 
 
-  <button type="submit" class="btn btn-primary">회원가입</button>
+  <button type="submit" class="btn btn-primary">개인정보수정</button>
 </form>
-
+{{/OneUser}}
 </div>
- 
 
 {{> include/footer}}
- </body>
+  </body>
 </html>
