@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.webprac1.domain.User;
 import net.webprac1.domain.UserRepository;
@@ -26,13 +27,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/join")
-	public String userJoin(User user) {
+	public String userJoin(User user, RedirectAttributes redirect) {
 		System.out.println(user.toString());
 		if(userRepository.findByUserId(user.getUserId())!=null) {
-			System.out.println("아이디 중복");
+			redirect.addFlashAttribute("massageBox", "이미 사용중인 아이디입니다");
 			return "redirect:/user/joinForm";
 		}
 		userRepository.save(user);
+		redirect.addFlashAttribute("massageBox", "회원가입이 완료되었습니다");
 		return "redirect:/";
 	}
 	
@@ -42,30 +44,31 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String userLogin(String userId, String userPassword, HttpSession session) {
+	public String userLogin(String userId, String userPassword, HttpSession session, RedirectAttributes redirect) {
 		User user = userRepository.findByUserId(userId);
 		
 		if(user==null) {
-			System.out.println("로그인 실패");
+			redirect.addFlashAttribute("massageBox", "존재하지 않는 아이디입니다");
 			return "redirect:/user/loginForm";
 		}
 		if(!userPassword.equals(user.getUserPassword())) {
-			System.out.println("로그인 실패");
+			redirect.addFlashAttribute("massageBox", "비밀번호가 틀립니다");
 			return "redirect:/user/loginForm";
 		}
-		System.out.println("로그인 성공");
 		session.setAttribute("sessionedUser", user);
+		redirect.addFlashAttribute("massageBox", "로그인 되었습니다");
 		return "redirect:/";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, RedirectAttributes redirect) {
 		session.removeAttribute("sessionedUser");
+		redirect.addFlashAttribute("massageBox", "로그아웃 되었습니다");
 		return "redirect:/";
 	}
 	
 	@GetMapping("/{id}/infoForm")
-	public String infoForm(@PathVariable Long id, Model model, HttpSession session) {
+	public String infoForm(@PathVariable Long id, Model model, HttpSession session, RedirectAttributes redirect) {
 		Object tempUser = session.getAttribute("sessionedUser");		
 		if(tempUser == null) {
 			return "redirect:/user/loginForm";
@@ -74,8 +77,8 @@ public class UserController {
 		User sessionedUser = (User) tempUser;	
 		System.out.println(tempUser.toString());
 		if(!sessionedUser.isSameId(id)) {
-			model.addAttribute("user_info_not_same", "자신의 정보만 수정 가능합니다");
-			return "user/infoForm";
+			redirect.addFlashAttribute("massageBox", "자신의 정보만 수정 가능합니다");
+			return "redirect:/";
 		}
 		
 		User user = userRepository.findById(id).get();

@@ -5,22 +5,12 @@
 {{> include/header}}
 
 
-{{#user_info_not_same}}
-<script type="text/javascript">
-
-  alert("{{this}}");
-
-</script>
-{{/user_info_not_same}}
-
-
   </head>
   <body>
 {{> include/navigation}}
 
 
 
-{{^user_info_not_same}}
 <div class="container">
 
 {{#infoUser}}
@@ -48,8 +38,6 @@
 </form>
 {{/infoUser}}
 </div>
-
-{{/user_info_not_same}}
 
 {{> include/footer}}
   </body>

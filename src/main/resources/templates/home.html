@@ -3,6 +3,13 @@
   <head>
   <meta charset="utf-8">
 {{> include/header}}
+
+{{#massageBox}}
+<script type="text/javascript">
+  alert("{{this}}");
+</script>
+{{/massageBox}}
+
   </head>
   <body>
 {{> include/navigation}}
