@@ -54,7 +54,11 @@ public class User {
 	}
 	
 	
-	
+	public void update(User updateUser) {
+		this.userPassword = updateUser.userPassword;
+		this.userName = updateUser.userName;
+		this.userEmail = updateUser.userEmail;		
+	}
 	
 	
 	@Override
@@ -87,4 +91,7 @@ public class User {
 		return "User [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", userEmail="
 				+ userEmail + "]";
 	}
+
+
+
 }

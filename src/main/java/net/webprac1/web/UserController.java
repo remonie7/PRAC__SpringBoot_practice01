@@ -85,5 +85,15 @@ public class UserController {
 		model.addAttribute("infoUser", user);
 		return "user/infoForm";
 	}
+	
+	
+	@PostMapping("/{id}/updateInfo")
+	public String updateInfo(@PathVariable Long id, User updateUser, RedirectAttributes redirect) {
+		User user = userRepository.findById(id).get();
+		user.update(updateUser);
+		userRepository.save(user);
+		redirect.addFlashAttribute("massageBox", "수정이 완료되었습니다.");
+		return "redirect:/";
+	}
 
 }
