@@ -1,0 +1,15 @@
+<include target="header.html" />
+
+<button type="button" onclick="history.back()" class="{$btn} {$btn_size} {$btn_color}"><i class="ti-arrow-left"></i> {$lang->cmd_cancel}</button>	
+<div class="smallBox">
+	<h3>{$lang->confirm_delete}</h3>
+	<p cond="$oDocument->isExists()">{$oDocument->getTitle()}</p>
+    <form action="./" method="get" onsubmit="return procFilter(this, delete_document)">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="page" value="{$page}" />
+		<input type="hidden" name="document_srl" value="{$document_srl}" />        
+		<button type="submit" accesskey="s" class="{$btn} {$btn_size} {$btn_del_color}">{$lang->cmd_delete}</button>
+    </form>
+</div>
+
+<include target="footer.html" />

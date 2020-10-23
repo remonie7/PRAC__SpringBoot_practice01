@@ -1,0 +1,8 @@
+<!--@if($module_info->display_icon=='B')-->
+<span class="new-icon" cond="(int)($document->getRegdate('YmdHis') > date('YmdHis', time()-($module_info->duration_new*60*60))) && $module_info->display_new!='N'"><i class="xi-new"></i></span>
+<span class="update-icon" cond="(int)($document->get('last_update')>date('YmdHis', time()-($module_info->duration_new*60*60))) && ($document->getRegdate('YmdHis') != $document->get('last_update')) && $module_info->display_update!='N'"><i class="xi-update"></i></span>
+<span class="file-icon" cond="$document->hasUploadedFiles() && $module_info->display_file!='N'"><i class="ti-files"></i></span>
+<span class="secret-icon" cond="$document->variables[status]=='SECRET' && $module_info->display_secret!='N'"><i class="ti-lock"></i></span>
+<!--@else-->
+{$document->printExtraImages(60*60*$module_info->duration_new)}
+<!--@end-->

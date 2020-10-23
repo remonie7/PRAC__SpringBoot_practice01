@@ -1,0 +1,138 @@
+
+<div class="feedbackList" id="comment" cond="$oDocument->getCommentCount()">
+	<div class="feedbackHeader comment-icon" cond="$grant->write_comment && $oDocument->allowComment()">
+		<i class="ti-comments" title="{$lang->comment}"></i> <em>{$oDocument->getCommentcount()}</em>
+	</div>
+
+	<div class="replyList">
+		{@ $_comment_list = $oDocument->getComments() }
+		<div class="item <!--@if($comment->get('depth'))-->itemReply<!--@end-->" id="comment_{$comment->comment_srl}" loop="$oDocument->getComments()=>$key,$comment">
+			<div class="indent" style="padding-left:{($comment->get('depth'))*20}px"|cond="$comment->get('depth')">			
+				<div class="itemAside hidden-xs visible-sm">
+					<img src="{$comment->getProfileImage()}" alt="profile" class="profile r50" cond="$comment->getProfileImage()" />
+					<img src="img/common/noProfile.png" alt="profile" class="profile r50" cond="!$comment->getProfileImage()" />
+				</div><!-- // itemAside end -->
+
+				<div class="itemContent">
+					<!--@if(!$comment->isAccessible())-->
+						<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage boardWrite">
+							<input type="hidden" name="mid" value="{$mid}" />
+							<input type="hidden" name="page" value="{$page}" />
+							<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
+							<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
+							<p cond="0">&quot;{$lang->msg_is_secret}&quot;</p>
+							<p>
+								<input type="password" id="cpw" name="password" class="inputText" placeholder="{$lang->password}" />
+								<input type="submit" value="{$lang->cmd_input}" class="{$btn} {$btn_size} {$btn_color}"/>
+							</p>
+						</form>
+					<!--@else-->
+
+						<div class="meta">
+							<span>
+								<i class="ti-user" title="{$lang->author}"></i> 
+								<a href="{$comment->homepage}" onclick="window.open(this.href);return false;" cond="!$comment->member_srl && $comment->homepage">{$comment->getNickName()}</a>
+								<strong cond="!$comment->member_srl && !$comment->homepage">{$comment->getNickName()}</strong>
+								<a href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false" cond="$comment->member_srl">{$comment->getNickName()}</a>
+							</span>
+							<span>
+								<i class="ti-time" title="{$lang->regdate}"></i> {$comment->getRegdate('Y-m-d H:i:s')}
+							</span>
+							<span cond="$grant->manager">IP: {$comment->getIpaddress()}</span>
+							<!-- // 추천표시 출력 -->
+							<!--@if($comment->get('voted_count')!=0 || $comment->get('blamed_count') != 0)-->
+							<span><i class="ti-heart" title="{$lang->voted_count}"></i> {$lang->cmd_vote}: {$comment->get('voted_count')?$comment->get('voted_count'):0}</span>
+							<span><i class="ti-heart-broken" title="{$lang->blamed_count}"></i> {$lang->cmd_vote_down}: {$comment->get('blamed_count')?$comment->get('blamed_count'):0}</span>
+							<!--@end-->
+						</div>
+						
+						<!-- // 댓글 출력 -->
+						{$comment->getContent(false)}
+
+						<!-- // 첨부파일 출력 -->
+						<div class="attachedFileWrp" cond="$comment->hasUploadedFIles()">
+							<dl class="attachedFile">
+								<dt>
+									<i class="ti-files" title="{$lang->uploaded_file}"></i>
+									<button type="button" class="fileToggle" onclick="jQuery(this).parents('dl.attachedFile').toggleClass('open');return false;">{$lang->uploaded_file} ({$comment->get('uploaded_count')})</button>
+								</dt>
+								<dd>
+									<ul class="files">
+										{@ $_uploaded_files = $comment->getUploadedFiles() }
+										<!--@foreach($_uploaded_files as $key => $file)-->
+										<li><a href="{getUrl('')}{$file->download_url}">{$file->source_filename} <span class="bubble">[File Size:{FileHandler::filesize($file->file_size)}/Download{number_format($file->download_count)}]</span></a></li>
+										<!--@end-->
+									</ul>
+								</dd>
+							</dl>	
+						</div>					
+										
+						<ul class="option">
+							<!--@if($is_logged)-->
+							<li><a href="#popup_menu_area" class="{$btn} small comment_{$comment->comment_srl}"><i class="ti-more-alt" alt="{$lang->cmd_comment_do}"></i></a></li>
+							<li cond="$comment_config->use_vote_up=='S' || $comment_config->use_vote_up=='Y'">
+								<a href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false;" class="{$btn} small"><i class="ti-heart" alt="{$lang->cmd_vote}"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+							</li> 							
+							<li cond="$comment_config->use_vote_down=='S' || $comment_config->use_vote_down=='Y'">
+								<a href="#" onclick="doCallModuleAction('comment','procCommentVoteDown','{$comment->comment_srl}');return false;" class="{$btn} small"><i class="ti-heart-broken" alt="{$lang->cmd_vote_down}"></i> {$comment->get('blamed_count')?$comment->get('blamed_count'):0}</a>
+							</li>
+							<!--@end-->
+							<li><a href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="{$btn} small"><i class="ti-plus"></i> {$lang->cmd_reply}</a></li>
+							<!--@if($comment->isGranted() || !$comment->get('member_srl'))-->
+							<li><a href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="{$btn} small"><i class="ti-eraser"></i> {$lang->cmd_modify}</a></li>
+							<li><a href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="{$btn} small"><i class="ti-trash"></i> {$lang->cmd_delete}</a></li>
+							<!--@end-->
+						</ul>
+
+					<!--@end-->
+
+				</div><!-- // itemContent end -->
+			</div><!-- // indent end -->
+		</div><!-- // item end -->
+	</div><!-- // replyList end -->
+
+    <!-- // 댓글 페이지표시 -->
+    <ul class="boardPagination" cond="$oDocument->comment_page_navigation">
+        <li class="prevEnd"><a href="{getUrl('cpage',1)}#comment" title="{$lang->first_page}"><i class="ti-angle-left"></i> {$lang->first_page}</a></li>
+		<li loop="$page_no=$oDocument->comment_page_navigation->getNextPage()">
+			<strong class="page_on" cond="$cpage==$page_no">{$page_no}</strong>
+			<a href="{getUrl('cpage',$page_no)}#comment" cond="$cpage!=$page_no">{$page_no}</a>
+        </li>
+        <li class="nextEnd"><a href="{getUrl('cpage',$oDocument->comment_page_navigation->last_page)}#comment">{$lang->last_page} <i class="ti-angle-right"></i></a></li>
+    </ul>
+
+</div>
+
+<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" class="boardWrite" cond="$grant->write_comment && $oDocument->isEnableComment()">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+	<input type="hidden" name="comment_srl" value="" />
+	<input type="hidden" name="content" value="" />
+	<div class="boardEditor r3">
+		<div class="editorOption">
+			<block cond="!$is_logged">
+			<div class="write_type xet_clearfix">
+				<div class="input_title" cond="0">{$lang->author}</div>	
+				<div class="input_form"><input type="text" name="nick_name" class="inputText userName" value=""  placeholder="{$lang->author}" /></div>
+			</div>
+			<div class="write_type xet_clearfix">
+				<div class="input_title" cond="0">{$lang->password}</div>
+				<div class="input_form"><input type="password" name="password" class="inputText userPw" value=""  placeholder="{$lang->password}" /></div>
+			</div>
+			</block>
+			<div class="write_type">
+				<block cond="$is_logged">
+					<input type="checkbox" name="notify_message" value="Y" id="notify_message" class="inputCheck" checked="checked"|cond="$module_info->notify_comment=='Y'" />
+					<label for="notify_message">{$lang->notify}</label>
+				</block>
+				<input type="checkbox" name="is_secret" value="Y" id="is_secret" class="inputCheck" checked="checked"|cond="$module_info->secret_comment=='Y'" />
+				<label for="is_secret">{$lang->secret}</label>
+			</div>
+		</div>
+		<div class="editor">{$oDocument->getCommentEditor()}</div>
+		<div class="boardNavigation">
+			<button type="submit" class="{$btn} {$btn_large_size} {$btn_submit} xet_btn_block">{$lang->cmd_comment_registration}</button>
+		</div>
+	</div>
+</form>
+

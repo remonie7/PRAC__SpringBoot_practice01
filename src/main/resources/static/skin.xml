@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">XET 심플보드 - 반응형</title>
+	<title xml:lang="en">XET Simple board - Responsive</title>
+    <description xml:lang="ko">
+	   Ver: 1.1.3
+       제작 : XE템플릿
+    </description>	
+    <version>1.1.3</version>
+    <date>2020-09-07</date>
+    <author email_address="inpleworks@gmail.com" link="https://xetemplate.com">
+        <name xml:lang="ko">XE템플릿</name>
+		<name xml:lang="en">XETemplate</name>
+    </author>
+    <license>기타라이선스(재배포금지)</license>
+    <colorset>
+        
+    </colorset>
+    <extra_vars>
+	<group>
+		<title xml:lang="ko">상단 설정</title>
+        <var name="title" type="textarea">
+            <title xml:lang="ko">게시판 제목</title>
+            <description xml:lang="ko">게시판의 제목을 입력합니다.</description>
+        </var>
+        <var name="sub_title" type="textarea">
+            <title xml:lang="ko">게시판 부제목</title>
+            <description xml:lang="ko">게시판 제목 옆에 나타날 부제목을 입력합니다.</description>
+        </var>
+        <var name="title_image" type="image">
+            <title xml:lang="ko">게시판 이미지제목</title>
+            <description xml:lang="ko">게시판의 제목을 이미지로 출력합니다. 이미지를 사용하는경우 게시판 제목 / 부제목은 출력 안 됩니다.</description>
+        </var>
+        <var name="comment" type="textarea">
+            <title xml:lang="ko">게시판 상세 설명</title>
+            <description xml:lang="ko">게시판 제목 아래 표시될 설명을 입력합니다..</description>
+        </var>    
+        <var name="board_title_align" type="radio" default="left">
+            <title xml:lang="ko">게시판 제목 정렬</title>
+			<description xml:lang="ko">게시판 제목 영역의 정렬을 설정합니다.</description>
+            <options value="left">
+                <title xml:lang="ko">좌측 정렬</title>
+            </options>
+			<options value="center">
+                <title xml:lang="ko">중앙 정렬</title>
+            </options>			 
+        </var>  
+		<var name="category_style" type="radio" default="Y">
+            <title xml:lang="ko">카테고리(분류)</title>
+            <description xml:lang="ko">카테고리(분류) 정렬 버튼을 사용합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">사용</title>
+            </options>         
+			<options value="N">
+                <title xml:lang="ko">사용 안함</title>
+            </options>
+        </var>
+		<var name="use_sort" type="radio" default="N">
+            <title xml:lang="ko">게시물 정렬버튼</title>
+            <description xml:lang="ko">게시물을 등록순,날짜순,조회순등으로 정렬할 수 있는 정렬 버튼을 사용합니다.</description>
+            <options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">사용 안함</title>
+			</options>			
+        </var>
+        <var name="use_style" type="radio" default="N">
+            <title xml:lang="ko">게시물 스타일 선택</title>
+            <description xml:lang="ko">게시물을 스타일을 선택할 수 있는 버튼을 사용합니다.</description>
+            <options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">사용 안함</title>
+			</options>			
+        </var>
+	</group>
+	<group>
+		<title xml:lang="ko">게시판 스타일 설정</title>
+        <var name="default_style" type="radio" default="list">
+            <title xml:lang="ko">스타일 설정</title>
+            <description xml:lang="ko">기본 스타일을 지정합니다.</description>
+            <options value="list">
+                <title xml:lang="ko">목록형</title>
+            </options>
+            <options value="gallery">
+                <title xml:lang="ko">갤러리형</title>
+            </options> 
+            <options value="webzine">
+                <title xml:lang="ko">웹진형</title>
+            </options>           
+            <options value="blog">
+                <title xml:lang="ko">블로그형</title>
+            </options>            
+        </var>
+	</group>	
+	<group>
+		<title xml:lang="ko">목록형 설정</title>
+		<var name="list_style" type="radio" default="table">
+            <title xml:lang="ko">목록형 스타일</title>
+            <description xml:lang="ko">갤러리형 스타일을 선택합니다.</description>
+            <options value="table">
+                <title xml:lang="ko">Table</title>
+            </options>
+            <options value="ul">
+                <title xml:lang="ko">UL</title>
+            </options>
+        </var>
+		<var name="display_header_list" type="radio" default="Y">
+            <title xml:lang="ko">Table - 타이틀 바 표시</title>
+			<description xml:lang="ko">테이블형 사용시 타이틀 바 출력 여부를 선택합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			 <options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+        </var>
+        <var name="list_thumbnail_width" type="text">
+            <title xml:lang="ko">썸네일 출력 시 크기</title>
+            <description xml:lang="ko">썸네일 사용 시 썸네일 크기를 설정합니다. (기본 80)</description>
+        </var>
+	</group>
+	<group>
+		<title xml:lang="ko">갤러리형 설정</title>
+		<var name="gallery_style" type="radio" default="A">
+            <title xml:lang="ko">갤러리형 스타일</title>
+            <description xml:lang="ko">갤러리형 스타일을 선택합니다.</description>
+            <options value="A">
+                <title xml:lang="ko">갤러리 A 스타일</title>
+            </options>
+            <options value="B">
+                <title xml:lang="ko">갤러리 B 스타일</title>
+            </options>
+        </var>
+		<var name="gallery_thumbnail_type" type="radio" default="crop">
+            <title xml:lang="ko">썸네일 생성 방법</title>
+            <description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
+            <options value="crop">
+                <title xml:lang="ko">꽉 채우기(crop)</title>
+            </options>
+            <options value="ratio">
+                <title xml:lang="ko">비율 맞추기(ratio)</title>
+            </options>
+        </var>
+		<var name="gallery_thumbnail_width" type="text" default="320">
+            <title xml:lang="ko">썸네일 가로크기</title>
+            <description xml:lang="ko">썸네일 이미지 가로크기를 정합니다.(기본 320)</description>
+        </var>
+        <var name="gallery_thumbnail_height" type="text" default="240">
+            <title xml:lang="ko">썸네일 세로크기</title>
+            <description xml:lang="ko">썸네일 이미지 세로크기를 정합니다. (기본 240)</description>
+        </var>
+        <var name="gallery_col" type="radio" default="4">
+            <title xml:lang="ko">가로 출력 개수</title>
+            <description xml:lang="ko">가로 출력 개수를 설정합니다.</description>
+            <options value="3">
+                <title xml:lang="ko">3개</title>
+            </options>
+            <options value="4">
+                <title xml:lang="ko">4개</title>
+            </options>
+            <options value="5">
+                <title xml:lang="ko">5개</title>
+            </options>
+            <options value="6">
+                <title xml:lang="ko">6개</title>
+            </options>
+        </var> 
+        <var name="gallery_col_m" type="radio" default="2">
+            <title xml:lang="ko">모바일에서 가로 출력 개수</title>
+            <description xml:lang="ko">모바일에서 가로 출력 개수를 설정합니다.</description>
+            <options value="1">
+                <title xml:lang="ko">1개</title>
+            </options>
+            <options value="2">
+                <title xml:lang="ko">2개</title>
+            </options>
+        </var>         
+		<var name="gallery_thumbnail_space" type="text" default="15">
+            <title xml:lang="ko">아이템 간격</title>
+            <description xml:lang="ko">썸네일,내용등을 포함한 아이템별 간격을 정합니다. (기본 15)</description>
+        </var>
+		<var name="gallery_height" type="text">
+            <title xml:lang="ko">아이템 세로크기 고정</title>
+            <description xml:lang="ko">아이템의 세로크기를 강제로 고정 시키려면 높이값을 입력합니다.(숫자만 입력합니다. 입력값이 없으면 자동조절)</description>
+        </var>               
+	</group>
+	<group>
+		<title xml:lang="ko">웹진형 설정</title>
+		<var name="webzine_style" type="radio" default="A">
+            <title xml:lang="ko">웹진형 스타일</title>
+            <description xml:lang="ko">웹진형 스타일을 선택합니다.</description>
+            <options value="A">
+                <title xml:lang="ko">1컬럼 스타일</title>
+            </options>
+            <options value="B">
+                <title xml:lang="ko">2컬럼 스타일</title>
+            </options>
+        </var>
+        <var name="thumbnail_type" type="radio" default="crop">
+            <title xml:lang="ko">썸네일 생성 방법</title>
+            <description xml:lang="ko">썸네일 생성 방법을 선택합니다.</description>
+            <options value="crop">
+                <title xml:lang="ko">꽉 채우기(crop)</title>
+            </options>
+            <options value="ratio">
+                <title xml:lang="ko">비율 맞추기(ratio)</title>
+            </options>
+        </var>
+        <var name="thumbnail_width" type="text" default="320">
+            <title xml:lang="ko">썸네일 가로크기</title>
+            <description xml:lang="ko">썸네일 이미지 가로크기를 정합니다. (기본 320)</description>
+        </var>
+        <var name="thumbnail_height" type="text" default="320">
+            <title xml:lang="ko">썸네일 세로크기</title>
+            <description xml:lang="ko">썸네일 이미지 세로크기를 정합니다. (기본 320)</description>
+        </var>
+	</group>
+	<group>
+		<title xml:lang="ko">썸네일 위에 첨부파일(이미지) 개수 출력</title>
+		<var name="file_count" type="radio" default="Y">
+            <title xml:lang="ko">첨부파일 개수 출력</title>
+            <description xml:lang="ko">썸네일 사용 시 첨부된 파일의 개수를 썸네일 위에 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>
+	</group>
+	<group>
+		<title xml:lang="ko">View 설정</title>
+        <var name="subject_align" type="radio" default="center">
+            <title xml:lang="ko">[상단] 제목 정렬</title>
+			<description xml:lang="ko">게시물 제목의 정렬을 설정합니다.</description>
+            <options value="left">
+                <title xml:lang="ko">좌측 정렬</title>
+            </options>
+			<options value="center">
+                <title xml:lang="ko">중앙 정렬</title>
+            </options>			 
+        </var>
+		<var name="display_author" type="radio" default="Y">
+            <title xml:lang="ko">[상단] 게시물 작성자 표시</title>
+			<description xml:lang="ko">게시물 작성자를 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>			 
+        </var>
+        <var name="display_regdate" type="radio" default="Y">
+            <title xml:lang="ko">[상단] 게시물 등록일 표시</title>
+			<description xml:lang="ko">게시물 등록일을 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>			 
+        </var>
+        <var name="display_update_time" type="radio" default="N">
+            <title xml:lang="ko">[상단] 최종 업데이트 날짜,시간 표시</title>
+			<description xml:lang="ko">게시물 업데이트 정보를 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>			 
+        </var>
+        <var name="display_comment_count" type="radio" default="Y">
+            <title xml:lang="ko">[상단] 댓글수 표시</title>
+			<description xml:lang="ko">댓글수 정보를 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>			 
+        </var>
+        <var name="display_readed_count" type="radio" default="Y">
+            <title xml:lang="ko">[상단] 조회수 표시</title>
+			<description xml:lang="ko">조회수 정보를 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+        </var>
+        <var name="display_vote_count" type="radio" default="N">
+            <title xml:lang="ko">[상단] 추천수 표시</title>
+			<description xml:lang="ko">추천수 정보를 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>			 
+        </var>
+        <var name="display_blamed_count" type="radio" default="N">
+            <title xml:lang="ko">[상단] 비추천수 표시</title>
+			<description xml:lang="ko">비추천수 정보를 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>			 
+        </var>
+        <var name="display_extravar" type="radio" default="Y">
+            <title xml:lang="ko">[상단] 확장변수 표시</title>
+			<description xml:lang="ko">입력된 확장변수를 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>			 
+        </var>
+        <var name="img_center" type="radio" default="N">
+            <title xml:lang="ko">[본문] 이미지 정렬</title>
+			<description xml:lang="ko">본문에 삽입된 이미지를 강제로 중앙으로 정렬합니다..</description>
+            <options value="Y">
+                <title xml:lang="ko">중앙 정렬</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">OFF</title>
+            </options>			 
+        </var>
+        <var name="display_sign" type="radio" default="N">
+            <title xml:lang="ko">[하단] 서명 표시</title>
+            <description xml:lang="ko">게시물 작성자의 서명을 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>		
+		<var name="document_This" type="radio" default="N">
+            <title xml:lang="ko">[하단] 이 게시물, 이댓글을... 출력</title>
+			<description xml:lang="ko">본문 내용 하단에 "이 게시물을..." 과 코멘트 내용 하단에 "이 댓글을.."에 출력합니다. (관리자는 기본 출력)</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>
+        <var name="display_vote_btn" type="radio" default="N">
+			<title xml:lang="ko">[하단] 추천 버튼 출력</title>
+			<description xml:lang="ko">본문 하단에 추천 버튼을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+		</var>
+		<var name="display_blamed_btn" type="radio" default="N">
+			<title xml:lang="ko">[하단] 비추천 버튼 출력</title>
+			<description xml:lang="ko">본문 하단에 비추천 버튼을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+		</var>
+        <var name="display_sns" type="radio" default="N">
+            <title xml:lang="ko">[하단] SNS공유 출력</title>
+			<description xml:lang="ko">본문 내용 하단에 SNS 공유 아이콘을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>
+        <var name="display_sns_kakao" type="textarea">
+            <title xml:lang="ko">- 카카오톡 링크 공유 Javascript키 입력</title>
+			<description xml:lang="ko">카카오톡 링크 공유버튼을 출력하려면 카카오에서 발급한 Javascript 키를 입력합니다.(https://developers.kakao.com)</description>
+        </var>		
+		<var name="display_scrap_btn" type="radio" default="N">
+			<title xml:lang="ko">[하단] 스크랩 버튼 출력</title>
+			<description xml:lang="ko">본문 하단에 스크랩 버튼을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+		</var>
+		<var name="display_print_btn" type="radio" default="N">
+			<title xml:lang="ko">[하단] 프린트 버튼 출력</title>
+			<description xml:lang="ko">본문 하단에 프린트 버튼을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+		</var>
+		<var name="display_declare_btn" type="radio" default="N">
+			<title xml:lang="ko">[하단] 신고 버튼 출력</title>
+			<description xml:lang="ko">본문 하단에 신고 버튼을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+		</var>
+		<var name="trackback_url" type="radio" default="N">
+            <title xml:lang="ko">[하단] 엮인글 주소 출력</title>
+            <description xml:lang="ko">본문 하단에 엮인글 주소를 표시합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>
+		<var name="display_file" type="radio" default="N">
+            <title xml:lang="ko">[하단] 첨부파일 목록 출력</title>
+            <description xml:lang="ko">본문 하단에 첨부파일 목록을  출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>
+        <var name="display_comment" type="radio" default="Y">
+            <title xml:lang="ko">[하단] 댓글 및 댓글 입력창 출력</title>
+            <description xml:lang="ko">본문 하단에 댓글 및 댓글 입력창을 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>
+		<var name="dp_list" type="radio" default="N">
+			<title xml:lang="ko">본문 하단에 목록 출력</title>
+			<description xml:lang="ko">본문 하단에 목록을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+		</var>		
+	</group>
+	<group>
+		<title xml:lang="ko">글 쓰기 설정</title> 
+		 <var name="write_tag" type="radio" default="N">
+            <title xml:lang="ko">태그 입력</title>
+            <description xml:lang="ko">태그를 입력창을 사용합니다.</description>
+            <options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">사용안함</title>
+			</options>			
+        </var>	       
+		<var name="secret_document" type="radio" default="N">
+            <title xml:lang="ko">비밀글 작성 자동체크</title>
+            <description xml:lang="ko">모든 게시물이 비밀글로 작성되게끔 자동으로 체크합니다. (게시판 설정 > 고급 > 상태의 비밀에 체크 되어있어야만 비밀글을 작성할 수 있습니다.)</description>
+            <options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">사용안함</title>
+			</options>			
+        </var>
+         <var name="notify_document" type="radio" default="N">
+            <title xml:lang="ko">알림 자동체크</title>
+            <description xml:lang="ko">모든 게시물의 알림에 자동으로 체크합니다.</description>
+            <options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">사용안함</title>
+			</options>			
+        </var>	
+	</group>
+	<group>
+		<title xml:lang="ko">댓글 쓰기 설정</title>
+        <var name="secret_comment" type="radio" default="N">
+            <title xml:lang="ko">비밀글 작성 자동체크</title>
+            <description xml:lang="ko">댓글 작성시 비밀글로 자동 체크합니다.</description>
+            <options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">사용안함</title>
+			</options>			
+        </var>	
+        <var name="notify_comment" type="radio" default="N">
+            <title xml:lang="ko">알림 자동체크</title>
+            <description xml:lang="ko">댓글 작성시 알림에 자동으로 체크합니다.</description>
+            <options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">사용안함</title>
+			</options>			
+        </var>	
+	</group>
+	<group>
+		<title xml:lang="ko">목록 설정</title>
+        <var name="subject_cut_size" type="text">
+            <title xml:lang="ko">제목 글자 수</title>
+            <description xml:lang="ko">제목 글자수를 지정할 수 있습니다. (0또는 비워주시면 자르지 않습니다)</description>
+        </var>
+		<var name="content_cut_size" type="text" default="400">
+			<title xml:lang="ko">내용 글자 수</title>
+			<description xml:lang="ko">내용 글자수를 지정할 수 있습니다. (기본 400)</description>
+		</var>
+		<var name="duration_new" type="text" default="24">
+            <title xml:lang="ko">new표시 시간 (hours)</title>
+            <description xml:lang="ko">새로 등록된 게시물의 new 표시시간을 정할 수 있습니다. (기본 24 )</description>
+        </var>
+        <var name="display_extra_subject" type="radio" default="N">
+            <title xml:lang="ko">사용자 정의 입력항목이름</title>
+            <description xml:lang="ko">사용자 정의 사용 시 "입력항목 이름"을 같이 출력합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">사용</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">사용안함</title>
+            </options>
+        </var>
+		<var name="display_pagination" type="radio" default="Y">
+            <title xml:lang="ko">페이지네이션</title>
+            <description xml:lang="ko">목록 하단에 페이지네이션 사용 여부를 선택합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">사용</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">사용안함</title>
+            </options>
+        </var>
+		<var name="display_search" type="radio" default="Y">
+            <title xml:lang="ko">검색</title>
+            <description xml:lang="ko">검색 사용 여부를 선택합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">사용</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">사용안함</title>
+            </options>
+        </var>
+        <var name="display_mydoc" type="radio" default="N">
+            <title xml:lang="ko">내글보기 버튼</title>
+            <description xml:lang="ko">내글보기 버튼 사용 여부를 선택합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">사용</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">사용안함</title>
+            </options>
+        </var>
+		<var name="infoEtc" type="radio" default="N">
+            <title xml:lang="ko">태그리스트 버튼</title>
+            <description xml:lang="ko">목록 하단 오른쪽에 태그리스트 버튼 출력 여부를 선택합니다.</description>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>	
+        </var>	
+	</group>
+	
+	<group>
+		<title xml:lang="ko">아이콘 출력 설정</title>
+		<var name="display_icon" type="radio" default="B">
+            <title xml:lang="ko">아이콘 출력 설정</title>
+            <description xml:lang="ko">아이콘을 출력합니다.</description>
+			<options value="A">
+                <title xml:lang="ko">기본 아이콘 출력</title>
+            </options>
+            <options value="B">
+                <title xml:lang="ko">커스텀 아이콘 출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+        </var>
+		<var name="display_new" type="radio" default="Y">
+            <title xml:lang="ko">New 아이콘</title>
+            <description xml:lang="ko">커스텀 아이콘 출력시 NEW 아이콘을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+        </var>
+        <var name="display_update" type="radio" default="Y">
+            <title xml:lang="ko">Update 아이콘</title>
+            <description xml:lang="ko">커스텀 아이콘 출력시 Update 아이콘을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+        </var>
+        <var name="display_file" type="radio" default="N">
+            <title xml:lang="ko">File 아이콘</title>
+            <description xml:lang="ko">커스텀 아이콘 출력시 File 아이콘을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+        </var>
+        <var name="display_secret" type="radio" default="Y">
+            <title xml:lang="ko">Secret 아이콘</title>
+            <description xml:lang="ko">커스텀 아이콘 출력시 Secrete 아이콘을 출력합니다.</description>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+        </var>
+	</group>
+	<group>
+		<title xml:lang="ko">링크 설정</title>
+		<var name="link" type="radio" default="N">
+			<title xml:lang="ko">게시물 클릭 시 링크 설정</title>
+			<description xml:lang="ko">게시물 클릭시 링크값을 설정합니다. (사용자 정의 이름은 link 로 추가합니다.)</description>
+			<options value="N">
+				<title xml:lang="ko">기본링크</title>
+			</options>
+			<options value="exvar">
+				<title xml:lang="ko">확장변수 링크(새창)</title>
+			</options>		
+		</var>
+	</group>
+    </extra_vars>
+</skin>
+

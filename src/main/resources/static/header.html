@@ -1,0 +1,148 @@
+{@ Context::set('current_version', __ZBXE_VERSION__);}
+
+<!--@if(Mobile::isFromMobilePhone() || Mobile::isMobileCheckByAgent())-->
+	{@ $device = 'mobile'; }
+<!--@end-->
+{@ 
+	$btn = 'xet_btn'; 
+	$btn_size = 'medium';
+	$btn_large_size = 'large';
+}
+<load target="css/button_flat.css" />
+
+{@
+	$btn_color = 'white';
+	$btn_act_color = 'white';
+	$btn_submit = 'gray';
+	$btn_del_color = 'white';	
+}
+
+<!--@if($mi->layout_srl==0 || $mi->mlayout_srl==0)-->
+{@
+	Context::addHtmlHeader('<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />');	
+}
+<!--@end-->
+
+<block cond="!$module_info->thumbnail_type">{@ $module_info->thumbnail_type = 'crop'; }</block>
+<block cond="!$module_info->gallery_thumbnail_type">{@ $module_info->gallery_thumbnail_type = 'crop'; }</block>
+
+<block cond="$listStyle=='gallery'">{@ $module_info->default_style = 'gallery'}</block>
+<block cond="$listStyle=='webzine'">{@ $module_info->default_style = 'webzine'}</block>
+<block cond="$listStyle=='list'">{@ $module_info->default_style = 'list'}</block>
+<block cond="$listStyle=='blog'">{@ $module_info->default_style = 'blog'}</block>
+<block cond="!in_array($module_info->default_style,array('list','webzine','gallery','blog'))">{@ $module_info->default_style = 'list'}</block>
+
+<!--@if($order_type == "desc")-->
+    {@ $order_icon = "buttonDescending.gif" }
+    {@ $order_type = "asc"; }
+<!--@else-->
+    {@ $order_icon = "buttonAscending.gif" }
+    {@ $order_type = "desc"; }
+<!--@end-->
+
+<!--@if($current_version < '1.8.0')-->
+<load target="//cdn.jsdelivr.net/xeicon/1.0.4/xeicon.min.css" />
+<!--@else-->
+<load target="../../../../common/xeicon/xeicon.min.css" />
+<!--@end-->
+<load target="themify-icons/themify-icons.css" />
+<load target="css/responsive-grid.css" />
+<load target="css/board.css" />
+<load target="css/view_document.css" />
+<load target="css/write_form.css" />
+<load target="css/css3.css" />
+<load target="js/board.js" />
+
+<!--[if lte IE 9]>
+<script>
+jQuery(function($){
+	placeholder();
+});
+</script>
+<![endif]-->
+
+<!-- // 갤러리형 설정값 반영 // -->
+<!--@if($module_info->default_style=='gallery')-->
+	<load target="js/jquery.plugins.min.js" type="body" />
+	{@
+		$_column_height = $module_info->gallery_height;
+		$_column_space = $module_info->gallery_thumbnail_space;
+		
+		if($module_info->gallery_col_m=='1') $_col_xs_size = 'col-xs-12';
+		if($module_info->gallery_col_m=='2') $_col_xs_size = 'col-xs-6';
+		else $_col_xs_size = 'col-xs-6';
+		
+		if($module_info->gallery_col=='6') $_col_md_size = 'col-md-2';
+		if($module_info->gallery_col=='5') $_col_md_size = 'col-md-2h';
+		if($module_info->gallery_col=='4') $_col_md_size = 'col-md-3';
+		if($module_info->gallery_col=='3') $_col_md_size = 'col-md-4';
+		else $_col_md_size = 'col-md-3';
+	}	
+	<style type="text/css">
+	<!--@if($_column_height)-->
+	#xet-galleryMasonry .itemBox {
+		height:{$_column_height}px;
+	}
+	<!--@end-->
+	<!--@if($_column_space)-->
+	#xet-galleryMasonry {
+		margin-left: -{$_column_space}px;
+		margin-right: -{$_column_space}px;
+	}
+	#xet-galleryMasonry .col-xs-6,
+	#xet-galleryMasonry .col-xs-12,
+	#xet-galleryMasonry .col-sm-4,
+	#xet-galleryMasonry .col-md-4,
+	#xet-galleryMasonry .col-md-3,
+	#xet-galleryMasonry .col-md-2h,
+	#xet-galleryMasonry .col-md-2 {
+		padding-left: {$_column_space}px;
+		padding-right: {$_column_space}px;
+		margin-bottom: {$_column_space*2}px;	
+	}
+	<!--@end-->
+	@media (max-width: 767px) {	
+		#xet-galleryMasonry {
+			margin-left: -8px;
+			margin-right: -8px;
+		}
+		#xet-galleryMasonry .col-xs-6,
+		#xet-galleryMasonry .col-xs-12,
+		#xet-galleryMasonry .col-sm-4,
+		#xet-galleryMasonry .col-md-4,
+		#xet-galleryMasonry .col-md-3,
+		#xet-galleryMasonry .col-md-2h,
+		#xet-galleryMasonry .col-md-2 {
+			padding-left: 8px;
+			padding-right: 8px;
+			margin-bottom: 16px;
+		}
+	}
+	</style>
+	<script>
+	(function($){			
+		$(window).load(function(){				
+		    var $container = $('#xet-galleryMasonry');	    
+		    if( !$container.length || !jQuery().isotope ) return;	    
+		    $container.isotope({
+			    itemSelector : '.item',
+		    	layoutMode: 'masonry',
+		        animationOptions: {
+		            duration: 1000,
+		            easing: 'linear',
+		            queue: false
+		        },
+		        masonry: {
+					isFitWidth: false,
+					percentPosition: true,
+				}
+		    });	 	    
+		});
+	})(jQuery);
+	</script>
+<!--@end-->
+
+<!-- // 게시판 시작 // -->
+<div id="xet-boardWrp" class="{$module_info->colorset}">
+	
+	
