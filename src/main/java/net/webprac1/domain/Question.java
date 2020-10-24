@@ -1,5 +1,8 @@
 package net.webprac1.domain;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -21,6 +24,8 @@ public class Question {
 	private String title;
 	private String contents;
 	
+	private LocalDateTime createDate;
+	
 	public Question() {};
 	
 	public Question(User writer, String title, String contents) {
@@ -28,5 +33,11 @@ public class Question {
 		this.writer = writer;
 		this.title = title;
 		this.contents = contents;
+		this.createDate = LocalDateTime.now();
+	}
+	
+	public String getFormattedCreateDate() {
+		if(createDate == null) return "";
+		return createDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
 	}
 }
