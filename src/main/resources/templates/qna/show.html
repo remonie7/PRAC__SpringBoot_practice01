@@ -55,10 +55,38 @@
              
          {{/selectQuestion}}
         </table>
+        </hr></hr>
+        <div id="reply">
+        	<ol class="replyList">
+        		<li>
+        			<p>
+        			<span class="glvphicon glvphicon-user"></span>
+        				작성자(a)
+        				작성시간(2020.10.25)
+        			</p>
+        			
+        			<p class="bg-info">내욘내용</p>
+        			
+        			<div class="form-group">
+        				<input type="button"  value="수정하기" onclick="location.href='#'">          
+			  			<input type="button"  value="삭제하기" onclick="location.href='#'">
+        			</div>
+        	</ol>
+        
+        </div>
+        
+        
+        </hr></hr>
+        
+        <textarea cols="100%" placeholder="댓글을 작성해주세요"></textarea>
+        <br>
+        <button type="button">댓글 작성</button>
     </div>
      
     </div>
 </div>
+
+
 
 
 {{> include/footer}}
