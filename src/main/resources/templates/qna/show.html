@@ -9,44 +9,57 @@
   <body>
 {{> include/navigation}}
 
-<div class="container">
-<table class="board_view">
-        <caption>상세보기</caption>
-        <colgroup>
-            <col width="15%">
-            <col width="35%">
-            <col width="15%">
-            <col width="*">
-        </colgroup>
-         
-        <tbody>
-        
+
+
+
+<div class="row">
+    <div class="col-xs-2 col-md-2"></div>
+    <div class="col-xs-8 col-md-8">
+    <h2 class="text-center">게시글 보기</h2><p>&nbsp;</p>
+    <div class="table table-responsive"> 
+        <table class="table">
         {{#selectQuestion}}
-            <tr>
-                <th>제목</th>
-                <td>{{title}}</td>
-                <th>조회수</th>
-                <td>${map.HIT_CNT }</td>
-            </tr>
-            <tr>
-                <th>작성자</th>
-                <td>{{writer.userId}}</td>
-                <th>작성시간</th>
-                <td>{{formattedCreateDate}}</td>
-            </tr>
-            <tr>
-                <th>내용</th>
-                <td colspan="3">
-                    {{contents}}
-                </td>
-            </tr>
-            {{/selectQuestion}}
-        </tbody>
-    </table>
-    <a href="#this" id="list" class="btn">목록으로</a>
-    <a href="#this" id="modify" class="btn">수정하기</a>
-    <a href="#this" id="delete" class="btn">삭제하기</a>
+        <tr>
+            <th>글번호</th>
+            <td>{{questionId}}</td>
+            <th>조회수</th>
+            <td>?</td>
+        </tr>
+           
+         
+        <tr>
+            <th>작성자</th>
+            <td>{{writer.userId}}</td>
+            <th>작성일</th>
+            <td>{{formattedCreateDate}}</td>
+        </tr>
+         
+        <tr>
+            <th>제목</th>
+            <td colspan="3">{{title}}</td>
+        </tr>
+         
+        <tr>
+            <th>글 내용</th>
+            <td colspan="3">{{contents}}</td>
+        </tr>
+         
+        <tr>
+            <td colspan="4" class="text-center">
+              <input type="button"  value="답글 쓰기" onclick="location.href='#'" >
+    		  <input type="button"  value="수정하기" onclick="location.href='#'">          
+			  <input type="button"  value="삭제하기" onclick="location.href='#'">
+			  <input type="button"  value="목록보기" onclick="location.href='#'">
+            </td>
+        </tr>  
+             
+         {{/selectQuestion}}
+        </table>
+    </div>
+     
+    </div>
 </div>
+
 
 {{> include/footer}}
   </body>
