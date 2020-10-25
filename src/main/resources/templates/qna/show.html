@@ -9,9 +9,44 @@
   <body>
 {{> include/navigation}}
 
-
-
-
+<div class="container">
+<table class="board_view">
+        <caption>상세보기</caption>
+        <colgroup>
+            <col width="15%">
+            <col width="35%">
+            <col width="15%">
+            <col width="*">
+        </colgroup>
+         
+        <tbody>
+        
+        {{#selectQuestion}}
+            <tr>
+                <th>제목</th>
+                <td>{{title}}</td>
+                <th>조회수</th>
+                <td>${map.HIT_CNT }</td>
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td>{{writer.userId}}</td>
+                <th>작성시간</th>
+                <td>{{formattedCreateDate}}</td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td colspan="3">
+                    {{contents}}
+                </td>
+            </tr>
+            {{/selectQuestion}}
+        </tbody>
+    </table>
+    <a href="#this" id="list" class="btn">목록으로</a>
+    <a href="#this" id="modify" class="btn">수정하기</a>
+    <a href="#this" id="delete" class="btn">삭제하기</a>
+</div>
 
 {{> include/footer}}
   </body>
