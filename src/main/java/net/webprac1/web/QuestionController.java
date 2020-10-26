@@ -71,5 +71,14 @@ public class QuestionController {
 		return "qna/modifyForm";
 	}
 	
+	@PostMapping("/updateModify/{questionId}")
+	public String modify(@PathVariable Long questionId, HttpSession session, RedirectAttributes redirect, String title, String contents) {
+		Question question = questionRepository.findById(questionId).get();
+		question.update(title, contents);
+		questionRepository.save(question);
+		redirect.addFlashAttribute("massageBox", "수정이 완료되었습니다.");
+		return "redirect:/question/show/{questionId}";
+	}
+	
 	
 }
