@@ -36,6 +36,12 @@ public class Question {
 		this.createDate = LocalDateTime.now();
 	}
 	
+	
+	
+	public User getWriter() {
+		return writer;
+	}
+
 	public String getFormattedCreateDate() {
 		if(createDate == null) return "";
 		return createDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));

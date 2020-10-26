@@ -5,6 +5,12 @@
 {{> include/header}}
 
 
+{{#massageBox}}
+<script type="text/javascript">
+  alert("{{this}}");
+</script>
+{{/massageBox}}
+
   </head>
   <body>
 {{> include/navigation}}
@@ -22,16 +28,18 @@
         <tr>
             <th>글번호</th>
             <td>{{questionId}}</td>
-            <th>조회수</th>
-            <td>?</td>
+            <th>작성자</th>
+            <td>{{writer.userId}}</td>
         </tr>
            
          
         <tr>
-            <th>작성자</th>
-            <td>{{writer.userId}}</td>
             <th>작성일</th>
             <td>{{formattedCreateDate}}</td>
+            <th>조회수</th>
+            <td>?</td>
+            
+            
         </tr>
          
         <tr>
@@ -46,10 +54,9 @@
          
         <tr>
             <td colspan="4" class="text-center">
-              <input type="button"  value="답글 쓰기" onclick="location.href='#'" >
-    		  <input type="button"  value="수정하기" onclick="location.href='#'">          
+    		  <input type="button"  value="수정하기" onclick="location.href='/question/modify/{{questionId}}'">          
 			  <input type="button"  value="삭제하기" onclick="location.href='#'">
-			  <input type="button"  value="목록보기" onclick="location.href='#'">
+			  <input type="button"  value="목록보기" onclick="location.href='/'">
             </td>
         </tr>  
              

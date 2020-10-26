@@ -45,12 +45,31 @@ public class QuestionController {
 		return "redirect:/";
 	}
 	
-	
 	@GetMapping("/show/{questionId}")
 	public String show(@PathVariable Long questionId, Model model) {
 		Question question = questionRepository.findById(questionId).get();
 		model.addAttribute("selectQuestion", question);
 		return "qna/show";
 	}
+	
+	@GetMapping("/modify/{questionId}")
+	public String modifyQuestion(@PathVariable Long questionId, Model model, HttpSession session, RedirectAttributes redirect) {
+		Object tempUser = session.getAttribute("sessionedUser");		
+		if(tempUser==null) {
+			redirect.addFlashAttribute("massageBox", "로그인을 해야 글을 수정할 수 있습니다.");
+			return "redirect:/user/loginForm";
+		}
+		
+		User sessionedUser = (User) tempUser;	
+		Question question = questionRepository.findById(questionId).get();
+		if(!sessionedUser.isSameId(question.getWriter().getId())) {
+			redirect.addFlashAttribute("massageBox", "자신이 쓴 글만 수정 가능합니다");
+			return "redirect:/question/show/{questionId}";
+		}
+		
+		model.addAttribute("modifyQuestion", question);
+		return "qna/modifyForm";
+	}
+	
 	
 }
