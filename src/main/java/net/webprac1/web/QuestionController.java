@@ -80,5 +80,24 @@ public class QuestionController {
 		return "redirect:/question/show/{questionId}";
 	}
 	
+	@GetMapping("/delete/{questionId}")
+	public String deleteQuestion(@PathVariable Long questionId, Model model, HttpSession session, RedirectAttributes redirect) {
+		Object tempUser = session.getAttribute("sessionedUser");		
+		if(tempUser==null) {
+			redirect.addFlashAttribute("massageBox", "로그인을 해야 글을 삭제할 수 있습니다.");
+			return "redirect:/user/loginForm";
+		}
+		
+		User sessionedUser = (User) tempUser;	
+		Question question = questionRepository.findById(questionId).get();
+		if(!sessionedUser.isSameId(question.getWriter().getId())) {
+			redirect.addFlashAttribute("massageBox", "자신이 쓴 글만 삭제 가능합니다");
+			return "redirect:/question/show/{questionId}";
+		}
+		questionRepository.deleteById(questionId);
+		redirect.addFlashAttribute("massageBox", "글이 정상적으로 삭제되었습니다.");
+		return "redirect:/";
+	}
+	
 	
 }
