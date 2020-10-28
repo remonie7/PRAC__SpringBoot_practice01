@@ -16,7 +16,7 @@
 {{> include/navigation}}
 
 
-
+{{#selectQuestion}}
 
 <div class="row">
     <div class="col-xs-2 col-md-2"></div>
@@ -24,7 +24,7 @@
     <h2 class="text-center">게시글 보기</h2><p>&nbsp;</p>
     <div class="table table-responsive"> 
         <table class="table">
-        {{#selectQuestion}}
+        
         <tr>
             <th>글번호</th>
             <td>{{questionId}}</td>
@@ -60,19 +60,23 @@
             </td>
         </tr>  
              
-         {{/selectQuestion}}
+         
         </table>
         </hr></hr>
+ 
+ 
+ {{#answers}}       
+     
         <div id="reply">
         	<ol class="replyList">
         		<li>
         			<p>
         			<span class="glvphicon glvphicon-user"></span>
-        				작성자(a)
-        				작성시간(2020.10.25)
+        				작성자({{writer.userId}})
+        				작성시간({{formattedCreateDate}})
         			</p>
         			
-        			<p class="bg-info">내욘내용</p>
+        			<p class="bg-info">{{contents}}</p>
         			
         			<div class="form-group">
         				<input type="button"  value="수정하기" onclick="location.href='#'">          
@@ -82,19 +86,24 @@
         
         </div>
         
-        
+
+         
+       {{/answers}}   
+       
+
         </hr></hr>
-        
-        <textarea cols="100%" placeholder="댓글을 작성해주세요"></textarea>
+       <form class="submit-write" method="post" action="/answer/{{questionId}}">  
+        <textarea cols="100%" name="contents" placeholder="댓글을 작성해주세요"></textarea>
         <br>
-        <button type="button">댓글 작성</button>
+        <input type="submit">댓글 작성</button>
+        </form> 
     </div>
      
     </div>
 </div>
 
 
-
+{{/selectQuestion}}
 
 {{> include/footer}}
   </body>
