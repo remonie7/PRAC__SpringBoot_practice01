@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +42,26 @@ public class AnswerController {
 		System.out.println("답글추가");
 		//return String.format("redirect:/question/show/%d", questionId);
 		return "redirect:/question/show/{questionId}";
+	}	
+	
+	@GetMapping("/delete/{answerId}")
+	public String delete(@PathVariable Long questionId, @PathVariable Long answerId, HttpSession session, RedirectAttributes redirect) {
+		Object tempUser = session.getAttribute("sessionedUser");
+		if(tempUser==null) {
+			redirect.addFlashAttribute("massageBox", "로그인을 해야 댓글을 삭제할 수 있습니다.");
+			return "redirect:/user/loginForm";
+		}
+		User loginUser = (User) tempUser;
+		Answer answer = answerRepository.findById(answerId).get();
+		User answerUser = answer.getWriter();
+		if(!answerUser.getId().equals(loginUser.getId())) {
+			redirect.addFlashAttribute("massageBox", "자신의 댓글만 삭제할 수 있습니다.");
+			return "redirect:/question/show/{questionId}";
+		}
+		
+		answerRepository.deleteById(answerId);
+	
+		
+		return "redirect:/question/show/{questionId}";
 	}
-	
-	
 }

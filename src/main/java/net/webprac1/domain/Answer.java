@@ -43,6 +43,30 @@ public class Answer {
 		return createDate.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss"));
 	}
 
+	
+	
+	
+	
+	public Long getAnswerId() {
+		return answerId;
+	}
+
+	public User getWriter() {
+		return writer;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -60,4 +60,5 @@ public class Question {
 		this.title=title;
 		this.contents=contents;
 	}
+
 }
