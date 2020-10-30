@@ -87,4 +87,16 @@ public class AnswerController {
 		return "redirect:/question/show/{questionId}";
 	}
 	
+	
+	@PostMapping("/modified/{answerId}")
+	public String modified(@PathVariable Long answerId, String contents, HttpSession session, RedirectAttributes redirect) {
+		Answer answer = answerRepository.findById(answerId).get();
+		answer.update(contents);
+		answerRepository.save(answer);
+		redirect.addFlashAttribute("massageBox", "수정이 완료되었습니다.");
+		
+		return "redirect:/question/show/{questionId}";
+		
+	}
+	
 }

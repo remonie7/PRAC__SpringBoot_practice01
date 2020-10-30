@@ -67,6 +67,15 @@ public class Answer {
 		return createDate;
 	}
 
+	
+	
+	public void update(String contents2) {
+		// TODO Auto-generated method stub
+		this.contents=contents2;
+		this.createDate=LocalDateTime.now();
+	}	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,7 +99,9 @@ public class Answer {
 		} else if (!answerId.equals(other.answerId))
 			return false;
 		return true;
-	}	
+	}
+
+
 	
 	
 }
