@@ -93,11 +93,15 @@
        {{/answers}}   
        
      				{{#answerModify}}
+     				<div id="reply">
+        				<ol class="replyList">
         			       <form class="submit-write" method="post" action="/answer/{{questionId}}/modified/{{answerId}}">  
         					<textarea cols="100%" name="contents" value={{contents}}>{{contents}}</textarea>
         					<br>
         					<input type="submit" value="댓글 수정"></button>
         					</form> 
+        					</ol>        
+       				 </div>
         				{{/answerModify}}	
         </hr></hr>
        <form class="submit-write" method="post" action="/answer/{{questionId}}">  
