@@ -64,4 +64,27 @@ public class AnswerController {
 		
 		return "redirect:/question/show/{questionId}";
 	}
+	
+	
+	@GetMapping("/modify/{answerId}")
+	public String modify(@PathVariable Long questionId, @PathVariable Long answerId, HttpSession session, RedirectAttributes redirect) {
+		Object tempUser = session.getAttribute("sessionedUser");
+		if(tempUser==null) {
+			redirect.addFlashAttribute("massageBox", "로그인을 해야 댓글을 수정할 수 있습니다.");
+			return "redirect:/user/loginForm";
+		}
+		User loginUser = (User) tempUser;
+		Answer answer = answerRepository.findById(answerId).get();
+		User answerUser = answer.getWriter();
+		if(!answerUser.getId().equals(loginUser.getId())) {
+			redirect.addFlashAttribute("massageBox", "자신의 댓글만 수정할 수 있습니다.");
+			return "redirect:/question/show/{questionId}";
+		}
+		
+		answer=answerRepository.findById(answerId).get();
+		redirect.addFlashAttribute("answerModify", answer);
+		
+		return "redirect:/question/show/{questionId}";
+	}
+	
 }

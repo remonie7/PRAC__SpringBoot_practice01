@@ -82,6 +82,8 @@
         				<input type="button"  value="수정하기" onclick="location.href='/answer/{{questionId}}/modify/{{answerId}}'">          
 			  			<input type="button"  value="삭제하기" onclick="location.href='/answer/{{questionId}}/delete/{{answerId}}'">
         			</div>
+   
+        					
         	</ol>
         
         </div>
@@ -90,12 +92,18 @@
          
        {{/answers}}   
        
-
+     				{{#answerModify}}
+        			       <form class="submit-write" method="post" action="/answer/{{questionId}}/modified/{{answerId}}">  
+        					<textarea cols="100%" name="contents" value={{contents}}>{{contents}}</textarea>
+        					<br>
+        					<input type="submit" value="댓글 수정"></button>
+        					</form> 
+        				{{/answerModify}}	
         </hr></hr>
        <form class="submit-write" method="post" action="/answer/{{questionId}}">  
         <textarea cols="100%" name="contents" placeholder="댓글을 작성해주세요"></textarea>
         <br>
-        <input type="submit">댓글 작성</button>
+        <input type="submit" value="댓글 작성"></button>
         </form> 
     </div>
      
