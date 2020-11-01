@@ -60,5 +60,9 @@ public class Question {
 		this.title=title;
 		this.contents=contents;
 	}
+	
+	public int getAnswersCount() {
+		return answers.size();
+	}
 
 }
